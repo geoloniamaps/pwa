@@ -1,7 +1,7 @@
 import React from "react";
 import './About.scss'
 import logo from './logo.svg'
-import QRCode from 'qrcode.react'
+import Qrcode from './Qrcode'
 import Share from './App/Share'
 import config from './config.json'
 
@@ -17,7 +17,7 @@ const Content = () => {
 
       <h1>{config.title}</h1>
       <h2>テイクアウトマップ</h2>
-      <div className="qrcode"><QRCode value={url} bgColor="transparent" fgColor="#FFFFFF" /></div>
+      <div className="qrcode"><Qrcode url={url}/></div>
       <Share />
     </div>
   );

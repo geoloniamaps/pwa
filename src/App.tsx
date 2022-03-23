@@ -1,5 +1,5 @@
 import React from "react";
-import { HashRouter, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import "./App.scss";
 
 import Home from './App/Home'
@@ -8,7 +8,7 @@ import AboutUs from './App/AboutUs'
 
 import Tabbar from './App/Tabbar'
 
-import csvParser from 'csv-parse'
+import { parse } from './lib/csv-parse-esm'
 // You can see config.json after running `npm start` or `npm run build`
 import config from './config.json'
 
@@ -27,7 +27,7 @@ const App = () => {
       return response.ok ? response.text() : Promise.reject(response.status);
     })
     .then((data) => {
-      csvParser(data, async (error, data) => {
+      parse(data, async (error: any, data: any) => {
         if (error) {
           console.log(error)
           setShopList([])
@@ -58,9 +58,10 @@ const App = () => {
           if (!feature['経度'].match(/^[0-9]+(\.[0-9]+)?$/)) {
             continue
           }
+
           const shop = {
-            index: i,
-            ...feature
+            ...feature,
+            index: i
           }
 
           nextShopList.push(shop)
@@ -74,9 +75,11 @@ const App = () => {
     <div className="app">
       <div className="app-body">
         <HashRouter>
-          <Route exact path="/"><Home data={shopList} /></Route>
-          <Route exact path="/list"><List data={shopList} /></Route>
-          <Route exact path="/about" component={AboutUs} />
+          <Routes>
+            <Route path="/" element={<Home data={shopList} />} />
+            <Route path="/list" element={<List data={shopList} />} />
+            <Route path="/about" element={<AboutUs />} />
+          </Routes>
         </HashRouter>
       </div>
       <div className="app-footer">
