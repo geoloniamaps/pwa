@@ -20,6 +20,7 @@ jobs:
     env:
       GOOGLE_SHEET_API_KEY: ${{ secrets.GOOGLE_SHEET_API_KEY }}
       GOOGLE_SHEET_URL: ${{ secrets.GOOGLE_SHEET_URL }}
+      GEOLONIA_API_KEY: ${{ secrets.GEOLONIA_API_KEY }}
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
@@ -32,6 +33,7 @@ jobs:
       run: |
         node bin/download.js ${GOOGLE_SHEET_URL} ${GOOGLE_SHEET_API_KEY}
         node bin/config.js
+        echo ${GEOLONIA_API_KEY}
 
     - name: Build PWA Assets
       run: |
