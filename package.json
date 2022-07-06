@@ -16,6 +16,8 @@
     "@types/react": "^17.0.41",
     "@types/react-dom": "^17.0.14",
     "chalk": "^5.0.1",
+    "csv-parse": "^5.2.2",
+    "csv2geojson": "^5.1.1",
     "icon-gen": "^3.0.0",
     "next-qrcode": "^2.0.0",
     "pwa-asset-generator": "^6.0.6",
@@ -31,8 +33,8 @@
     "typescript": "~4.6.2"
   },
   "scripts": {
-    "start": "node bin/config.js && react-scripts start",
-    "build": "node bin/config.js && react-scripts build",
+    "start": "node bin/download.js && node bin/config.js && react-scripts start",
+    "build": "node bin/download.js && node bin/config.js && react-scripts build",
     "build:assets": "pwa-asset-generator public/logo.svg ./public/ --index ./public/index.html --manifest ./public/manifest.json --favicon true",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

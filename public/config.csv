@@ -1,0 +1,3 @@
+title,description,form_url,logo_image_url,background_image_url,primary_color,orderby,id,repository
+Geolonia PWAマップ,"Google スプレッドシートを更新するだけでオリジナルの地図アプリを作成できる
+「Geolonia PWAマップ」",,https://geoloniamaps.github.io/pwamap/icon-pwamap.svg,https://geoloniamaps.github.io/pwamap/geolonia_bgimage_1920_1080.png,#d2691e,distance,geoloniamaps,pwamap

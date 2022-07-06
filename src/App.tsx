@@ -1,5 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import { parse } from './lib/csv-parse';
 import "./App.scss";
 
 import Home from './App/Home'
@@ -9,11 +10,7 @@ import Category from './App/Category'
 import Images from './App/Images'
 
 import Tabbar from './App/Tabbar'
-import table2json from "./lib/table2json";
-
-// You can see config.json after running `npm start` or `npm run build`
-// import config from './config.json'
-
+import zen2han from './lib/zen2han';
 
 const sortShopList = async (shopList: Pwamap.ShopData[]) => {
 
@@ -28,48 +25,58 @@ const App = () => {
   const [shopList, setShopList] = React.useState<Pwamap.ShopData[]>([])
 
   React.useEffect(() => {
-    fetch(`${process.env.PUBLIC_URL}/data.json?timestamp=${new Date().getTime()}`)
+    fetch(`${process.env.PUBLIC_URL}/data.csv?timestamp=${new Date().getTime()}`)
       .then((response) => {
         return response.ok ? response.text() : Promise.reject(response.status);
       })
-      .then((fetchedData) => {
+      .then((data) => {
 
-        const data = JSON.parse(fetchedData)
-
-        if ('values' in data === false) {
-          console.log("No Data Found at Spreadsheet")
-          setShopList([])
-          return
-        }
-
-        let features = table2json(data.values);
-
-        const nextShopList: Pwamap.ShopData[] = []
-        for (let i = 0; i < features.length; i++) {
-          const feature = features[i] as Pwamap.ShopData
-
-          if (!feature['緯度'] || !feature['経度'] || !feature['スポット名']) {
-            continue;
-          }
-          if (!feature['緯度'].match(/^-?[0-9]+(\.[0-9]+)?$/)) {
-            continue
-          }
-          if (!feature['経度'].match(/^-?[0-9]+(\.[0-9]+)?$/)) {
-            continue
+        // @ts-ignore
+        parse(data, async (error, data) => {
+          if (error) {
+            console.log(error)
+            setShopList([])
+            return
           }
 
-          const shop = {
-            ...feature,
-            index: i
+          const [header, ...records] = data;
+
+          const features = records.map((record: string) => {
+            const properties = header.reduce((prev: any, column: any) => {
+              const value = record[header.indexOf(column)];
+              prev[column] = zen2han(value);
+              return prev;
+            }, {});
+
+            return properties;
+          });
+
+          const nextShopList: Pwamap.ShopData[] = []
+          for (let i = 0; i < features.length; i++) {
+            const feature = features[i] as Pwamap.ShopData
+
+            if (!feature['緯度'] || !feature['経度'] || !feature['スポット名']) {
+              continue;
+            }
+            if (!feature['緯度'].match(/^-?[0-9]+(\.[0-9]+)?$/)) {
+              continue
+            }
+            if (!feature['経度'].match(/^-?[0-9]+(\.[0-9]+)?$/)) {
+              continue
+            }
+
+            const shop = {
+              ...feature,
+              index: i
+            }
+
+            nextShopList.push(shop)
           }
 
-          nextShopList.push(shop)
-        }
-
-        sortShopList(nextShopList).then((sortedShopList) => {
-          setShopList(sortedShopList)
-        })
-
+          sortShopList(nextShopList).then((sortedShopList) => {
+            setShopList(sortedShopList)
+          })
+        });
       });
   }, [])
 

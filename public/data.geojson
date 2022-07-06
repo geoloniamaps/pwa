@@ -1,0 +1,25 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "タイムスタンプ": "2022/05/11 14:46:34",
+        "カテゴリ": "オフィス",
+        "画像": "https://geolonia.github.io/logo/geolonia-logo_b2.jpg",
+        "スポット名": "株式会社Geolonia",
+        "紹介文": "株式会社Geoloniaの東京オフィスです",
+        "Instagram": "",
+        "Twitter": "geoloniamap",
+        "公式サイト": "https://geolonia.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.73754,
+          35.730091
+        ]
+      }
+    }
+  ]
+}
