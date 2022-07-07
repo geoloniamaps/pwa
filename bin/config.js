@@ -47,13 +47,35 @@ const exportConfig = () => {
 const exportGeoJSON = () => {
   try {
 
-    const file = fs.readFileSync(dataFilePath, 'utf8')
+    let file = fs.readFileSync(dataFilePath, 'utf8')
 
     csv2geojson.csv2geojson(file, {
       latfield: '緯度',
       lonfield: '経度',
       delimiter: ','
     }, function (err, data) {
+
+
+      // プロパティ名 「スポット名」を「title」に変更
+      if (data && data.features) {
+
+        const features = data.features;
+
+        for (let i = 0; i < features.length; i++) {
+
+          const feature = features[i];
+
+          if (feature.properties && feature.properties['スポット名']) {
+
+            const value = feature.properties['スポット名'];
+            delete feature.properties['スポット名'];
+            feature.properties.title = value;
+
+            data.features[i] = feature;
+
+          }
+        }
+      }
 
       fs.writeFileSync(path.join(__dirname, '..', 'public/data.geojson'), JSON.stringify(data, null, 2))
     });
