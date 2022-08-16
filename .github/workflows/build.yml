@@ -17,9 +17,6 @@ on:
 jobs:
   ubuntu:
     runs-on: ubuntu-latest
-    env:
-      GOOGLE_SHEET_API_KEY: ${{ secrets.GOOGLE_SHEET_API_KEY }}
-      GOOGLE_SHEET_URL: ${{ secrets.GOOGLE_SHEET_URL }}
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
