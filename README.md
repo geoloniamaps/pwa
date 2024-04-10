@@ -6,7 +6,7 @@ Geolonia PWA は、GitHub と Google Sheets を使って、素早く PWA の地�
 
 利用方法はこちらのマニュアルをご覧ください。
 
-[Geolonia PWA マップ ユーザーマニュアル](https://blog.geolonia.com/2022/05/17/pwamap-manual-setup.html) 
+[Geolonia PWA マップ ユーザーマニュアル](https://blog.geolonia.com/2022/05/17/pwamap-manual-setup.html)
 
 ## 注意事項
 このプログラムは自由にカスタマイズ可能ですが、利用についてはサポート対象外となります。
@@ -33,3 +33,6 @@ Geolonia PWA では、GitHub Actions を利用して、定期的に Google Sheet
 
 - GitHub Actions は10分毎のスケジュールですが、GitHub の仕様により大幅に遅れる可能性があります。
 - リポジトリが60日間使用されないと、GitHub Actions は自動的に無効になります。ご注意ください。
+
+## GitHub の通知メールの設定について
+- GitHub Actions 実行時に通知メールを送信します。通知メールを受け取りたく無い場合は、[GitHub Actions の通知オプション](https://docs.github.com/ja/account-and-profile/managing-subscriptions-and-notifications-on-github/setting-up-notifications/configuring-notifications#github-actions-%E3%81%AE%E9%80%9A%E7%9F%A5%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3) を参考に GitHub の通知設定を変更してください。
