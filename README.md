@@ -41,9 +41,12 @@ orderby: distance
 以下のスプレッドシートをコピーしてください。
 
 https://docs.google.com/spreadsheets/d/1_m8s4P5tdSeam3nzC5ruSfuvtSejQKEX1FiBeOWJN3E/edit?usp=sharing
+<img width="50%" alt="" src="https://github.com/user-attachments/assets/8a2f5031-ae90-4dd4-a2f1-4c2a1db70f42">
 
 
 次に共有設定を行ってください。
+
+<img width="50%" alt="" src="https://github.com/user-attachments/assets/21530ce7-4758-437c-af76-d4b9e756a8dd">
 
 Google スプレッドシート の URL は通常、以下のようなフォーマットの URL になっています。
 
