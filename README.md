@@ -19,6 +19,7 @@ https://github.com/geoloniamaps/pwamap
 title: Geolonia PWAマップ
 description: Google スプレッドシートを更新するだけでオリジナルの地図アプリを作成できる\n「Geolonia PWAマップ」
 data_url: https://docs.google.com/spreadsheets/d/1_m8s4P5tdSeam3nzC5ruSfuvtSejQKEX1FiBeOWJN3E/pub?gid=1957425126&single=true&output=csv
+form_url: ""
 logo_image_url: https://geoloniamaps.github.io/pwamap/icon-pwamap.svg
 background_image_url: https://geoloniamaps.github.io/pwamap/geolonia_bgimage_1920_1080.png
 primary_color: "#d2691e"
@@ -28,6 +29,7 @@ orderby: distance
 - `title`: サイトのタイトルです。
 - `description`: サイトの概要文です。
 - `data_url`: アプリで読み込む CSV データまでの URL を記述してください。SSL は必須です。
+- `form_url`: データの追加/更新用の申請フォームの URL を記述してください。
 - `logo_image_url`: PCで表示した時のロゴ画像の URL を記述してください。
 - `background_image_url`: PCで表示した時の背景画像の URL を記述してください。
 - `primary_color`: サイトのテーマカラーを記述してください。（例: `#d2691e`）
