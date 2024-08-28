@@ -32,23 +32,7 @@ jobs:
         node-version: 20.x
 
     - run: npm install
-
-    - name: Download data and set up environment variables
-      run: |
-        node bin/download.js ${GOOGLE_SHEET_URL} ${GOOGLE_SHEET_API_KEY}
-
-    - name: Push the data to Github
-      run: |
-        git config --global user.name "${GITHUB_ACTOR}"
-        git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-        if (git diff --shortstat | grep '[0-9]'); then \
-          git add .; \
-          git status .; \
-          git commit -m "スプレッドシートのデータを更新"; \
-          git push -f origin master; \
-        fi
-
-    - run: npm run build -repository=${GITHUB_REPOSITORY}
+    - run: npm run build
 
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@4.1.1
