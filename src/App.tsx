@@ -9,7 +9,8 @@ import Category from './App/Category'
 import Images from './App/Images'
 
 import Tabbar from './App/Tabbar'
-import table2json from "./lib/table2json";
+import config from "./config.json";
+import csvParser from 'csv-parse'
 
 // You can see config.json after running `npm start` or `npm run build`
 // import config from './config.json'
@@ -24,54 +25,66 @@ const sortShopList = async (shopList: Pwamap.ShopData[]) => {
 
 }
 
+const zen2han = (str: string) => {
+  return str.replace(/[！-～]/g, function(s: string) {
+    return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
+  }).replace(/　/g, ' ');
+}
+
 const App = () => {
   const [shopList, setShopList] = React.useState<Pwamap.ShopData[]>([])
 
   React.useEffect(() => {
-    fetch(`${process.env.PUBLIC_URL}/data.json?timestamp=${new Date().getTime()}`)
-      .then((response) => {
-        return response.ok ? response.text() : Promise.reject(response.status);
-      })
-      .then((fetchedData) => {
-
-        const data = JSON.parse(fetchedData)
-
-        if ('values' in data === false) {
-          console.log("No Data Found at Spreadsheet")
+    fetch(`${encodeURIComponent(config.data_url)}`)
+    .then((response) => {
+      return response.ok ? response.text() : Promise.reject(response.status);
+    })
+    .then((data) => {
+      csvParser(data, async (error, data) => {
+        if (error) {
+          console.log(error)
           setShopList([])
           return
         }
 
-        let features = table2json(data.values);
+        const [header, ...records] = data;
+
+        const features = records.map((record: string) => {
+          const properties = header.reduce((prev: any, column: any) => {
+            const value = record[header.indexOf(column)];
+            prev[column] = zen2han(value);
+            return prev;
+          }, {});
+
+          return properties;
+        });
 
         const nextShopList: Pwamap.ShopData[] = []
         for (let i = 0; i < features.length; i++) {
           const feature = features[i] as Pwamap.ShopData
-
           if (!feature['緯度'] || !feature['経度'] || !feature['スポット名']) {
             continue;
           }
-          if (!feature['緯度'].match(/^-?[0-9]+(\.[0-9]+)?$/)) {
+          if (!feature['緯度'].match(/^[0-9]+(\.[0-9]+)?$/)) {
             continue
           }
-          if (!feature['経度'].match(/^-?[0-9]+(\.[0-9]+)?$/)) {
+          if (!feature['経度'].match(/^[0-9]+(\.[0-9]+)?$/)) {
             continue
           }
-
           const shop = {
-            ...feature,
-            index: i
+            index: i,
+            ...feature
           }
 
           nextShopList.push(shop)
         }
-
         sortShopList(nextShopList).then((sortedShopList) => {
           setShopList(sortedShopList)
         })
-
       });
+    });
   }, [])
+
 
   return (
     <div className="app">
