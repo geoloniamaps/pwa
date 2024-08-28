@@ -35,7 +35,9 @@ orderby: distance
 
 ## スポットデータについて
 
-スポットは CSV 以下の方法でスポットデータファイルを作成して、config.yml にその CSV までの URL を設定してください。
+スポットは CSV 以下の方法でスポットデータファイルを作成して、`config.yml` にその CSV までの URL を設定してください。  
+
+なお、データは AJAX で常時読み込んでいますので、CSV が編集されるとほぼ同時にアプリ側にも反映されると考えてください。（キャッシュで多少タイムラグがあります。）
 
 ### Google スプレッドシートを使う方法
 以下のスプレッドシートをコピーしてください。
@@ -46,10 +48,14 @@ https://docs.google.com/spreadsheets/d/1_m8s4P5tdSeam3nzC5ruSfuvtSejQKEX1FiBeOWJ
 
 <img width="80%" alt="" src="https://github.com/user-attachments/assets/8a2f5031-ae90-4dd4-a2f1-4c2a1db70f42">
 
-Webへの公開設定で、「スポットデータ」シートを選択し、「CSV形式」を選択して公開して下さい。
+
+Webへの公開設定で、「スポットデータ」シートを選択し、「カンマ区切り（.csv）」を選択して公開して下さい。
+
+
 <img width="80%" alt="" src="https://github.com/user-attachments/assets/7c437ceb-21a3-4f06-9abc-5f798c7ba44a">
 
-公開をクリックし、表示された URL を `config.yml` の `data_url` に指定してください
+公開をクリックし、表示された URL を `config.yml` の `data_url` に指定して下さい。  
+GitHub Pages の設定をし、 コミットするとデータが反映されます。
 
 ## 開発
 
@@ -64,7 +70,7 @@ $ npm start
 
 下の URL にアクセスして下さい。開発サーバーが立ち上がります。
 
-`http://localhost:3000/<あなたのリポジトリ名>/#/`
+`http://localhost:3000/#/`
 
 
 ## 注意事項
