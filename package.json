@@ -24,7 +24,7 @@
     "react-icons": "^4.3.1",
     "react-infinite-scroll-component": "^6.1.0",
     "react-router-dom": "^6.2.2",
-    "react-scripts": "4.0.3",
+    "react-scripts": "^5.0.1",
     "react-select": "^5.2.2",
     "react-share": "^4.4.0",
     "react-stars": "^2.2.5",
