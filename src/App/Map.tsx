@@ -55,7 +55,7 @@ const Content = (props: Props) => {
 
   const addMarkers = (mapObject: any, data: any) => {
 
-    if (!mapObject || !data) {
+    if (!mapObject || data.length === 0) {
       return
     }
 
@@ -163,6 +163,7 @@ const Content = (props: Props) => {
     addMarkers(mapObject, props.data)
 
   }, [mapObject, props.data])
+
 
   React.useEffect(() => {
     const hash = parseHash();
