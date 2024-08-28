@@ -41,30 +41,15 @@ orderby: distance
 以下のスプレッドシートをコピーしてください。
 
 https://docs.google.com/spreadsheets/d/1_m8s4P5tdSeam3nzC5ruSfuvtSejQKEX1FiBeOWJN3E/edit?usp=sharing
-<img width="80%" alt="" src="https://github.com/user-attachments/assets/8a2f5031-ae90-4dd4-a2f1-4c2a1db70f42">
-
 
 次に共有設定を行ってください。
 
-<img width="80%" alt="" src="https://github.com/user-attachments/assets/21530ce7-4758-437c-af76-d4b9e756a8dd">
+<img width="80%" alt="" src="https://github.com/user-attachments/assets/8a2f5031-ae90-4dd4-a2f1-4c2a1db70f42">
 
-Google スプレッドシート の URL は通常、以下のようなフォーマットの URL になっています。
+Webへの公開設定で、「スポットデータ」シートを選択し、「CSV形式」を選択して公開して下さい。
+<img width="80%" alt="" src="https://github.com/user-attachments/assets/7c437ceb-21a3-4f06-9abc-5f798c7ba44a">
 
-```
-https://docs.google.com/spreadsheets/d/<:id>/edit#gid=<:gid>
-```
-
-これを以下のように置き換えることで、CSV フォーマットでアクセスできます。
-
-```
-https://docs.google.com/spreadsheets/d/<:id>/export?format=csv&gid=<:gid>
-```
-
-上のサンプルスプレッドシートの例では、以下のような URL になります。
-
-```
-https://docs.google.com/spreadsheets/d/1P6HM3YhLvWcfay2V_Pqxv7xPJwU8yR0SzZxinjXW4o4/export?format=csv&gid=0
-```
+公開をクリックし、表示された URL を `config.yml` の `data_url` に指定してください
 
 ## 開発
 
