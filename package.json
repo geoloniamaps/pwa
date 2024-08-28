@@ -16,8 +16,10 @@
     "@types/react": "^17.0.41",
     "@types/react-dom": "^17.0.14",
     "chalk": "^5.0.1",
+    "csv-parse": "^4.8.8",
     "icon-gen": "^3.0.0",
     "next-qrcode": "^2.5.1",
+    "papaparse": "^5.4.1",
     "pwa-asset-generator": "^6.0.6",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -31,13 +33,13 @@
     "typescript": "~4.6.2"
   },
   "scripts": {
-    "start": "node bin/config.js http://localhost:3000/ && react-scripts start",
-    "build": "node bin/config.js $npm_config_repository && react-scripts build",
+    "start": "node bin/config.js && react-scripts start",
+    "build": "node bin/config.js && react-scripts build",
     "build:assets": "pwa-asset-generator public/logo.svg ./public/ --index ./public/index.html --manifest ./public/manifest.json --favicon true",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "homepage": "./",
+  "homepage": ".",
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -54,12 +56,14 @@
     ]
   },
   "devDependencies": {
+    "@types/papaparse": "^5.3.14",
     "@types/react-infinite-scroller": "^1.2.3",
     "@types/react-router-dom": "^5.3.3",
     "@types/react-stars": "^2.2.1",
     "axios": "^0.26.1",
     "node-fetch": "2",
     "sass": "^1.49.9",
+    "stream-browserify": "^3.0.0",
     "yaml": "^1.10.2"
   }
 }
